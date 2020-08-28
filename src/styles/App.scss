@@ -1,0 +1,73 @@
+@import 'Settings';
+@import 'Auth';
+@import 'Register';
+@import 'Form';
+@import 'Main';
+@import 'SettingsPage';
+@import 'Popup';
+@import 'Loader';
+@import 'Header';
+@import 'Footer';
+@import 'Select';
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: $textColor;
+  padding: 0;
+  margin: 0;
+  position: relative;
+
+  //footer-offset
+  padding-bottom: 180px;
+  min-height: calc(100vh - 180px);
+
+  @media (max-width: $bpTablet) {
+    padding-bottom: 230px;
+    min-height: calc(100vh - 230px);
+  }
+
+  @media (max-width: $bpMobile) {
+    padding-bottom: 447px;
+    min-height: calc(100vh - 447px);
+  }
+
+  .footer-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  a {
+    color: $secondaryColor;
+  }
+
+  .logo-gray {
+    background-image: url("../img/logo-gray.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .error {
+    font-size: 12px;
+    color: $accentColor;
+    margin-top: 20px;
+  }
+
+  .message {
+    font-size: 12px;
+    color: $secondaryColor;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: right;
+  }
+}
+
+.wrapper {
+  width: 1200px;
+  max-width: calc(100% - 40px);
+  padding: 0 20px 90px 20px;
+  margin: 0 auto;
+  position: relative;
+}

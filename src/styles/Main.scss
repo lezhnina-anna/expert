@@ -1,0 +1,155 @@
+.main {
+  margin-top: 60px!important;
+
+  @media (max-width: $bpMobile) {
+    margin-top: 40px!important;
+  }
+
+  &__name, &__number, &__points {
+    text-align: left;
+
+    @media (max-width: $bpMobile) {
+      text-align: center;
+    }
+  }
+
+  &__settings {
+    display: none;
+    width: 25px;
+    height: 25px;
+    margin-left: auto;
+    margin-bottom: 20px;
+    cursor: pointer;
+    background-image: url("../img/settings.png");
+    background-size: 25px;
+
+    @media (max-width: $bpMobile) {
+      display: block;
+    }
+  }
+
+  &__name {
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 26px;
+    text-transform: uppercase;
+    margin-bottom: 45px;
+  }
+
+  &__number {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 17px;
+    margin-bottom: 45px;
+  }
+
+  &__points {
+    display: flex;
+    margin-bottom: 50px;
+    align-items: baseline;
+
+    @media (max-width: $bpMobile) {
+      flex-direction: column;
+      align-items: inherit;
+    }
+
+    .points-caption {
+      font-size: 18px;
+      line-height: 1.5;
+      margin-left: 10px;
+
+      @media (max-width: $bpMobile) {
+        font-size: 12px;
+        line-height: 17px;
+        margin-top: 5px;
+      }
+    }
+
+    .points-value {
+      font-weight: 800;
+      font-size: 33px;
+      line-height: 26px;
+      color: $accentColor
+    }
+  }
+
+  &__bonuslog {
+
+    .bonuslog__item {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .note {
+      display: block;
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 17px;
+      margin-bottom: 5px;
+    }
+
+    .date {
+      display: block;
+      font-size: 12px;
+      line-height: 17px;
+    }
+
+    .points {
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 17px;
+      text-align: right;
+
+      &.-plus {
+        color: $secondaryColor;
+      }
+    }
+  }
+
+  .qrcode {
+    display: none;
+    width: 55px;
+    height: 55px;
+    position: fixed;
+    bottom: 20px;
+    left: calc(50% - 27px);
+    background-image: url("../img/qrcode.png");
+    background-position: center;
+    border-radius: 50%;
+    z-index: 98;
+
+    @media (max-width: $bpMobile) {
+      display: block;
+    }
+  }
+
+  .popup {
+    &__text {
+      line-height: 14px;
+    }
+
+    .main__points {
+      margin-bottom: 35px;
+    }
+
+    &__qrcode {
+      margin-top: 10px;
+    }
+  }
+
+  .desktop-container {
+    display: flex;
+
+    svg {
+      margin-right: 50px;
+    }
+
+    @media (max-width: $bpMobile) {
+      display: block;
+
+      svg {
+        display: none;
+      }
+    }
+  }
+}

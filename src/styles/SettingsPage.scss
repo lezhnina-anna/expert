@@ -1,0 +1,64 @@
+.settings {
+  display: flex;
+
+  @media (max-width:$bpMobile) {
+    flex-direction: column;
+  }
+
+  &__item {
+    flex: 50%;
+
+    &:not(:last-child) {
+      margin-right: 100px;
+
+      @media (max-width:$bpMobile) {
+        margin-right: 0;
+      }
+    }
+  }
+
+  h2 {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 17px;
+    text-align: center;
+    margin-bottom: 45px;
+  }
+
+  h3 {
+    color: $thirdColor;
+    font-size: 15px;
+    line-height: 17px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .transparent-button {
+    margin-bottom: 30px;
+  }
+
+  &__links {
+    font-size: 15px;
+    line-height: 17px;
+
+    a {
+      display: block;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #E5E5E5;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__exit {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 17px;
+    color: $accentColor;
+    cursor: pointer;
+  }
+}

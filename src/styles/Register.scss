@@ -1,0 +1,62 @@
+.register {
+  .logo-gray {
+    width: 160px;
+    height: 64px;
+    margin: 90px auto 20vh auto;
+  }
+
+  .custom-checkbox {
+    width: 100%;
+  }
+
+  .card-info {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .points {
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 17px;
+      text-align: right;
+
+      &.-plus {
+        color: $secondaryColor;
+      }
+    }
+
+    .number {
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 17px;
+      color: $textColor;
+    }
+
+    .note {
+      position: absolute;
+      bottom: -100%;
+    }
+  }
+
+  .caption {
+    font-size: 12px;
+    line-height: 14px;
+    color: #A2A2A2;
+    max-width: 245px;
+    margin: 50px auto 0 auto;
+  }
+
+  .bonus-caption {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    margin-top: 50px;
+
+    &__button {
+      color: $secondaryColor;
+      display: block;
+    }
+  }
+}

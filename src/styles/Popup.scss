@@ -1,0 +1,53 @@
+.popup {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(238, 238, 238, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__content {
+    padding: 33px 40px 23px 40px;
+    background-color: white;
+    border-radius: 10px;
+    margin: 35px;
+
+    @media (max-width: 360px) {
+      padding: 33px 20px 23px 20px;
+    }
+  }
+
+  &__text {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 19px;
+    text-align: center;
+  }
+
+  &__buttons {
+    text-align: center;
+
+    span {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 17px;
+    }
+
+    span:not(:last-child) {
+      margin-right: 40px;
+    }
+
+    span.submit {
+      color: $secondaryColor;
+    }
+
+    span.cancel {
+      color: $accentColor;
+    }
+  }
+}
