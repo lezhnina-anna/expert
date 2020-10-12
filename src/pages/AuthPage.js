@@ -20,9 +20,12 @@ const AuthPage = () => {
         e.preventDefault();
 
         if (!form.checked) return;
+        form.phone.replace(" ", "");
 
         if (form.phone.length === 11 && form.phone[0] === "7") {
             form.phone = form.phone.replace("7", "8");
+        }else if (form.phone.length === 12 && form.phone[0] === "+" && form.phone[1] === "7") {
+            form.phone = form.phone.replace("+7", "8");
         }
 
         request(

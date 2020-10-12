@@ -14,9 +14,25 @@ const RegisterPage = (props) => {
     });
 
     const [isFormValid, setIsFormValid] = useState(false);
+    const [error, setError] = useState("");
 
     const changeHandler = event => {
         setForm({...form, [event.target.name]: event.target.value})
+    }
+
+    const changeDateHandler = event => {
+        let result = event.target.value.replace(" ", "");
+        const isDeleting = result.length < form[event.target.name].length;
+
+        if (!isDeleting && (result.length === 2 || result.length === 5)) {
+            result += ".";
+        }
+
+        if (result.length > 10 || isNaN(+result.replaceAll(".", ""))) {
+            return;
+        }
+
+        setForm({...form, [event.target.name]: result})
     }
 
     const changeSelectHandler = value => {
@@ -30,6 +46,15 @@ const RegisterPage = (props) => {
     const registerHandler = async (e) => {
         e.preventDefault();
 
+        if (form.name.replaceAll(" ", "").length === 0
+            || form.phone.replaceAll(" ", "").length === 0
+            || form.birthDate.replaceAll(" ", "").length === 0
+            || form.email.replaceAll(" ", "").length === 0
+        || !isFormValid) {
+            setError("Все поля должны быть заполнены");
+            return;
+        }
+
         try {
             request("/spump/owner/register", 'POST', {
                 Name: form.name,
@@ -38,13 +63,18 @@ const RegisterPage = (props) => {
                 BDate: form.birthDate,
                 Email: form.email
             }).then((data) => {
-                if (!data[0]) return;
-
+                if (!data[0]) {
+                    setError('Произошла ошибка на сервере. Повторите попытку позже')
+                    return;
+                }
+                setError("");
                 localStorage.removeItem("_register");
                 auth.setOwnerId(data[0].OWNER_ID);
                 initCard();
             });
-        } catch (e) {}
+        } catch (e) {
+            setError('Произошла ошибка на сервере. Повторите попытку позже')
+        }
     }
 
 
@@ -78,14 +108,14 @@ const RegisterPage = (props) => {
                 </div>
                 <div className={"input-field"}>
                     <label htmlFor={"birthDate"}>Дата рождения</label>
-                    <input id={"birthDate"} placeholder={"Дата рождения"} name={"birthDate"} type={"text"}
-                           onChange={changeHandler} value={form.birthDate}/>
+                    <input id={"birthDate"} placeholder={"дд.мм.гггг"} name={"birthDate"} type={"text"}
+                           onChange={changeDateHandler} value={form.birthDate}/>
                 </div>
                 <div className={"input-field"}>
-                    <label htmlFor={"birthDate"}>Пол</label>
+                    <label>Пол</label>
                     <Select value={form.gender} options={[
-                        {value: 1 , label: "Мужской"},
-                        {value: 0 , label: "Женский"},
+                        {value: 1, label: "Мужской"},
+                        {value: 0, label: "Женский"},
                     ]} onChange={changeSelectHandler}/>
                 </div>
                 <div className={"input-field"}>
@@ -93,7 +123,9 @@ const RegisterPage = (props) => {
                     <input id="email" placeholder={"E-mail"} name={"email"} type={"text"} onChange={changeHandler}
                            value={form.email || ''}/>
                 </div>
-                <input type={"submit"} value={"Зарегистрироваться"} disabled={loading || !isFormValid} className={"button"}/>
+                {error && <div style={{margin: "10px 0"}}>{error}</div>}
+                <input type={"submit"} value={"Зарегистрироваться"} disabled={loading || !isFormValid}
+                       className={"button"}/>
             </form>
         </div>
     )

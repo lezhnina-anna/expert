@@ -21,7 +21,7 @@ const SettingsPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (form.name.trim() === "" || form.phone.trim() === "" || isNaN(+form.phone) || form.phone.length < 11) {
+        if (form.name.replaceAll(" ", "").length === 0 || form.birthDate.replaceAll(" ", "").length === 0) {
             setError("Все поля должны быть корректно заполнены");
             return ;
         }
@@ -47,27 +47,15 @@ const SettingsPage = () => {
         }
     }
 
-    const onKeyDown = event => {
-        if (event.key !== 'Backspace') {
-            return
-        }
-
-        event.preventDefault();
-        const value = event.target.value;
-
-        const result = value.substring(0, value.length - 1);
-
-        setForm({...form, birthDate: result})
-    }
-
     const changeDateHandler = event => {
         let result = event.target.value.replace(" ", "");
+        const isDeleting = result.length < form[event.target.name].length;
 
-        if (result.length === 2 || result.length === 5) {
+        if (!isDeleting && (result.length === 2 || result.length === 5)) {
             result += ".";
         }
 
-        if (result.length > 10 || isNaN(+result.replace(".", ""))) {
+        if (result.length > 10 || isNaN(+result.replaceAll(".", ""))) {
             return;
         }
 
@@ -92,11 +80,11 @@ const SettingsPage = () => {
             if (user) {
                 setForm({
                     id: user.OWNER_ID,
-                    name: user.NAME,
-                    email: user.EMAIL,
-                    birthDate: user.BDATE,
+                    name: user.NAME || "",
+                    email: user.EMAIL || "",
+                    birthDate: user.BDATE || "",
                     phone: user.PHONE,
-                    gender: +user.MALE
+                    gender: user.MALE !== null ? +user.MALE : ""
                 });
             }
 
@@ -117,13 +105,13 @@ const SettingsPage = () => {
                     <form className={"form"} onSubmit={handleSubmit}>
                         <div className={"input-field"}>
                             <label htmlFor={"name"}>Имя Фамилия</label>
-                            <input id={"name"} name={"name"} type={"text"} onChange={changeHandler}
+                            <input style={{flex: "50%"}} id={"name"} name={"name"} type={"text"} onChange={changeHandler}
                                    value={form.name}/>
                         </div>
                         <div className={"input-field"}>
                             <label htmlFor={"birthDate"}>Дата рождения</label>
                             <input id={"birthDate"} name={"birthDate"} type={"text"} placeholder={"дд.мм.гггг"}
-                                   onChange={changeDateHandler} value={form.birthDate} onKeyDown={onKeyDown}/>
+                                   onChange={changeDateHandler} value={form.birthDate}/>
                         </div>
                         <div className={"input-field"}>
                             <label htmlFor={"birthDate"}>Пол</label>

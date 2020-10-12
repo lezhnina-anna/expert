@@ -62,11 +62,17 @@ const MainPage = () => {
 
         try {
             await request(`/spump/bonuslog/${data.id}`, 'POST', {
-                DateFrom: "01.01.2020",
+                DateFrom: "01.01.2018",
                 DateTo: "01.01.2021",
-                CardID: cardInfo.id
+                CardID: `BEKAR${cardInfo.id}`
             }).then(data => {
-
+                setBonuslog(data.map(item => {
+                    return {
+                        changed: item.DATETIME,
+                        note: item.NOTE,
+                        points: item.POINTS
+                    }
+                }))
             })
         } catch (e) {}
     }, [data, request, cardInfo])
@@ -120,7 +126,7 @@ const MainPage = () => {
                                 <span className={"date"}>{item.changed}</span>
                             </div>
                             <div className={"right"}>
-                                <span className={"points -plus"}>+ 140 Б</span>
+                                <span className={"points -plus"}>{item.points}</span>
                             </div>
                         </div>
                     })

@@ -1,4 +1,9 @@
 .register {
+  padding-bottom: 100px;
+  @media (max-width: $bpMobile) {
+    padding-bottom: 60px;
+  }
+
   .logo-gray {
     width: 160px;
     height: 64px;

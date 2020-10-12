@@ -1,6 +1,7 @@
 {
-  "basicToken": "Y29tLmV4cGVydDEyLndlYjpwYXNzd29yZF93ZWI=",
+  "basicToken": "cnUuZXhwZXJ0MTIud2ViOjQyUnhFU1Z1Vm5iUHJUcHdtVzZVQU1JVlNYS0xXcFY0",
   "server": {
-    "url": "http://192.168.30.227:8888"
+    "url": " https://lk.bekar12.ru:44333/api",
+    "url_old": "http://77.40.49.72:4303/api"
   }
 }
